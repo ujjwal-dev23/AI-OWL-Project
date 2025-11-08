@@ -36,7 +36,6 @@ def run_queries():
     # --- STEP 1: CONFIGURATION ---
     ontology_file = "plant-disease-ontology.ttl" # This is correct
     
-    # !! CRITICAL: Make sure this is your *exact* ontology IRI
     IRI = "http://www.semanticweb.org/knuckles/ontologies/2025/10/plant-disease-ontology#"
     
     # --- END OF CONFIGURATION ---
@@ -56,7 +55,7 @@ def run_queries():
     print(f"Successfully loaded Knowledge Graph from '{ontology_file}'")
     print(f"Total Triples in Graph: {len(g)}\n")
 
-    # --- Query 1 (Working) ---
+    # --- Query 1  ---
     title1 = "Symptoms by Disease"
     question1 = "What are the symptoms of 'Late Blight'?"
     query1_string = """
@@ -69,16 +68,12 @@ def run_queries():
     results1 = g.query(query1_string)
     print_query_results(title1, question1, query1_string, results1)
 
-    # --- Query 2 (***UPDATED***) ---
-    # Q: "Which diseases affect the 'Tomato' plant?"
-    # This query now uses a property path (a/rdfs:subClassOf*)
-    # to find individuals of :Disease OR any of its subclasses.
+    # --- Query 2 ---
     title2 = "Diseases by Host Plant"
     question2 = "Which diseases affect the ':Tomato' plant?"
     query2_string = """
         SELECT ?disease_label
         WHERE {
-            # This is the new, more robust line
             ?disease_iri a/rdfs:subClassOf* :Disease ;
                          :affectsHost :Tomato ;
                          rdfs:label ?disease_label .
@@ -87,7 +82,7 @@ def run_queries():
     results2 = g.query(query2_string)
     print_query_results(title2, question2, query2_string, results2)
     
-    # --- Query 3 (Working) ---
+    # --- Query 3 ---
     title3 = "Diseases by Pathogen Type (Fungus)"
     question3 = "What diseases in the knowledge base are caused by a Fungus?"
     query3_string = """
@@ -102,8 +97,7 @@ def run_queries():
     results3 = g.query(query3_string)
     print_query_results(title3, question3, query3_string, results3)
 
-    # --- Query 4 (Works, but needs data) ---
-    # Q: "I see 'Wilting'. What diseases could this be?"
+    # --- Query 4 ---
     title4 = "Symptom to Disease (Diagnostic)"
     question4 = "I see 'Wilting'. What diseases could this be?"
     query4_string = """
