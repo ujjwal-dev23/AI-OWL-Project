@@ -1,0 +1,152 @@
+@prefix : <http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2/> .
+
+<http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#affectsHost
+:affectsHost rdf:type owl:ObjectProperty ;
+             rdfs:domain :Disease ;
+             rdfs:range :Plant .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#hasSymptom
+:hasSymptom rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isSymptomOf ;
+            rdfs:domain :Disease ;
+            rdfs:range :Symptom .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#isCausedBy
+:isCausedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Disease ;
+            rdfs:range :Pathogen .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#isSymptomOf
+:isSymptomOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#isTreatedWith
+:isTreatedWith rdf:type owl:ObjectProperty ;
+               rdfs:domain :Disease ;
+               rdfs:range :Treatment .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#plantName
+:plantName rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Plant ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#symptomDescription
+:symptomDescription rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Symptom ;
+                    rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Bacteria
+:Bacteria rdf:type owl:Class ;
+          rdfs:subClassOf :Pathogen .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#BacterialDisease
+:BacterialDisease rdf:type owl:Class ;
+                  rdfs:subClassOf :Disease .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Disease
+:Disease rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#FungalDisease
+:FungalDisease rdf:type owl:Class ;
+               rdfs:subClassOf :Disease .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Fungus
+:Fungus rdf:type owl:Class ;
+        rdfs:subClassOf :Pathogen .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Pathogen
+:Pathogen rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Plant
+:Plant rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Symptom
+:Symptom rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Treatment
+:Treatment rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#ViralDisease
+:ViralDisease rdf:type owl:Class ;
+              rdfs:subClassOf :Disease .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Virus
+:Virus rdf:type owl:Class ;
+       rdfs:subClassOf :Pathogen .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#LateBlight
+:LateBlight rdf:type owl:NamedIndividual ,
+                     :FungalDisease ;
+            :affectsHost :Potato ,
+                         :Tomato ;
+            :hasSymptom :LeafSpots ;
+            :isCausedBy :P_Infestans .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#LeafSpots
+:LeafSpots rdf:type owl:NamedIndividual ,
+                    :Symptom .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#P_Infestans
+:P_Infestans rdf:type owl:NamedIndividual ,
+                      :Fungus .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Potato
+:Potato rdf:type owl:NamedIndividual ,
+                 :Plant .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Tomato
+:Tomato rdf:type owl:NamedIndividual ,
+                 :Plant .
+
+
+###  http://www.semanticweb.org/knuckles/ontologies/2025/10/untitled-ontology-2#Wilting
+:Wilting rdf:type owl:NamedIndividual ,
+                  :Symptom .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
